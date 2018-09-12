@@ -29,13 +29,42 @@ import com.example.corey.tipcalculator.R;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+
 public class Tip_Calculator extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     //declaration of variables
-    double tip = 0;
-    double totalwtipamount = 0;
-    String s = "";
-    double custtipperc = 0;
+    private double tip = 0;
+    private double totalwtipamount = 0;
+    private String outputter = "";
+    private double custtipperc = 0;
+
+    //Setters
+    public void setTip (double temptip) {
+        this.tip = temptip;
+    }
+    public void setTotalwtipamount (double temptotalwtip) {
+        this.totalwtipamount = temptotalwtip;
+    }
+    public void setCusttipperc (double tempCusttipperc) {
+        this.custtipperc = tempCusttipperc;
+    }
+    public void setOutputter (String tempoutput) {
+        this.outputter = tempoutput;
+    }
+
+    //Getters
+    public double getTip (){
+        return tip;
+    }
+    public double getTotalwtipamount (){
+        return tip;
+    }
+    public double getCusttipperc (){
+        return custtipperc;
+    }
+    public String getOutputter (){
+        return outputter;
+    }
 
 
     @Override
@@ -75,29 +104,30 @@ public class Tip_Calculator extends AppCompatActivity
         calcbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tip = 0;
+                setTip(0);
                 if (totalamount.getText().toString().equals("")) {
                     Toast.makeText(Tip_Calculator.this, "No total amount entered", Toast.LENGTH_SHORT).show();
                 } else {
                     double total = Double.parseDouble(totalamount.getText().toString());
+                    double tiptemp = 0;
                     if (tipten.isChecked()) {
-                        tip = calculatetip(.10, total);
+                        tiptemp = calculatetip(.10, total);
                     } else if (tipfifteen.isChecked()) {
-                        tip = calculatetip(.15, total);
+                        tiptemp = calculatetip(.15, total);
                     } else if (tiptwenty.isChecked()) {
-                        tip = calculatetip(.20, total);
+                        tiptemp = calculatetip(.20, total);
                     } else if (customtip.isChecked()) {
-                        tip = calculatetip(custtipperc, total);
+                        tiptemp = calculatetip(custtipperc, total);
                         tipten.toggle();
                     }
-
+                    setTip(tiptemp);
                     Double tipprecision = BigDecimal.valueOf(tip).setScale(2, RoundingMode.HALF_UP).doubleValue();
-                    totalwtipamount = tip + total;
+                    setTotalwtipamount(tip + total);
                     Double totalprecision = BigDecimal.valueOf(totalwtipamount).setScale(2, RoundingMode.HALF_UP).doubleValue();
-                    s = String.valueOf(tipprecision);
-                    tipamount.setText(s);
-                    s = String.valueOf(totalprecision);
-                    totalwtip.setText(s);
+                    setOutputter(String.valueOf((tipprecision)));
+                    tipamount.setText(getOutputter());
+                    setOutputter(String.valueOf(totalprecision));
+                    totalwtip.setText(getOutputter());
                 }
             }
         });
@@ -140,8 +170,8 @@ public class Tip_Calculator extends AppCompatActivity
 
 
     //Function that calculates tip
-    public double calculatetip(double tip, double total) {
-        double tipreturn = 0;
+    static public double calculatetip(double tip, double total) {
+        double tipreturn;
         tipreturn = total * tip;
         return tipreturn;
     }
@@ -166,10 +196,10 @@ public class Tip_Calculator extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_tipcalc) {
-
+        startActivity(new Intent(this, Tip_Calculator.class));
         }
         else if (id == R.id.nav_professioncalc) {
-
+        startActivity(new Intent(this, Profession.class));
         }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
