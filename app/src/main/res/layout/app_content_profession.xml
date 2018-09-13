@@ -10,39 +10,37 @@
     tools:showIn="@layout/app_bar_profession">
 
     <TextView
-        android:id="@+id/percentagetiptext2"
+        android:id="@+id/professiontiptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="240dp"
         android:text="Profession"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="196dp" />
+        tools:layout_editor_absoluteX="240dp"
+        tools:layout_editor_absoluteY="171dp" />
 
     <EditText
         android:id="@+id/totalamount"
-        android:layout_width="178dp"
+        android:layout_width="206dp"
         android:layout_height="48dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:textAlignment="viewStart"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="191dp"
+        tools:layout_editor_absoluteX="190dp"
         tools:layout_editor_absoluteY="31dp" />
 
     <TextView
         android:id="@+id/percentagetiptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:text="Tip Percentage"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="124dp" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="126dp" />
 
     <Button
         android:id="@+id/calcbtn"
@@ -54,7 +52,7 @@
         android:textAppearance="@android:style/TextAppearance.Large.Inverse"
         android:visibility="visible"
         tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="374dp" />
+        tools:layout_editor_absoluteY="388dp" />
 
 
     <TextView
@@ -64,8 +62,8 @@
         android:text="Enter Total:"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="45dp" />
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="33dp" />
 
     <EditText
         android:id="@+id/tipamount"
@@ -77,20 +75,7 @@
         android:textAlignment="viewStart"
         android:visibility="visible"
         tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="449dp" />
-
-    <EditText
-        android:id="@+id/totalwtip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="none"
-        android:selectAllOnFocus="false"
-        android:textAlignment="viewStart"
-        android:textSize="18sp"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="528dp" />
+        tools:layout_editor_absoluteY="479dp" />
 
     <TextView
         android:id="@+id/tiptext"
@@ -99,8 +84,8 @@
         android:text="Tip Amount:"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="463dp" />
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="479dp" />
 
     <EditText
         android:id="@+id/Tag"
@@ -115,34 +100,23 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="10sp"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="589dp" />
-
-    <TextView
-        android:id="@+id/totalwtiptext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total + Tip:"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="532dp" />
+        tools:layout_editor_absoluteX="158dp"
+        tools:layout_editor_absoluteY="679dp" />
 
     <RadioGroup
         android:id="@+id/tipRadioGroup"
-        android:layout_width="194dp"
+        android:layout_width="150dp"
         android:layout_height="196dp"
-        android:layout_marginStart="16dp"
         android:checkedButton="@+id/tip_ten"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="156dp">
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="158dp">
 
         <RadioButton
             android:id="@+id/tip_ten"
             android:layout_width="77dp"
             android:layout_height="41dp"
             android:layout_weight="1"
-            android:text="10%"
+            android:text="Good"
             tools:layout_editor_absoluteX="106dp"
             tools:layout_editor_absoluteY="152dp" />
 
@@ -151,7 +125,7 @@
             android:layout_width="77dp"
             android:layout_height="29dp"
             android:layout_weight="1"
-            android:text="15%"
+            android:text="Better"
             tools:layout_editor_absoluteX="106dp"
             tools:layout_editor_absoluteY="194dp" />
 
@@ -160,28 +134,40 @@
             android:layout_width="77dp"
             android:layout_height="42dp"
             android:layout_weight="1"
-            android:text="20%"
+            android:text="Best"
             tools:layout_editor_absoluteX="106dp"
             tools:layout_editor_absoluteY="207dp" />
 
-        <RadioButton
-            android:id="@+id/customtip"
-            android:layout_width="129dp"
-            android:layout_height="41dp"
-            android:layout_weight="1"
-            android:text="Custom Tip"
-            tools:layout_editor_absoluteX="106dp"
-            tools:layout_editor_absoluteY="264dp" />
     </RadioGroup>
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="176dp"
         android:layout_height="56dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="228dp"
-        <item>Hello</item>
-    />
+        tools:layout_editor_absoluteX="219dp"
+        tools:layout_editor_absoluteY="203dp" />
+
+    <TextView
+        android:id="@+id/totalwtiptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total + Tip:"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="545dp" />
+
+    <EditText
+        android:id="@+id/totalwtip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="182dp"
+        tools:layout_editor_absoluteY="542dp" />
 
 </android.support.constraint.ConstraintLayout>
