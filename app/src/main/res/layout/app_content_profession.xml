@@ -13,23 +13,28 @@
         android:id="@+id/professiontiptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
         android:text="Profession"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="240dp"
-        tools:layout_editor_absoluteY="171dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tipRadioGroup" />
 
     <EditText
         android:id="@+id/totalamount"
-        android:layout_width="206dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="31dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:textAlignment="viewStart"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="190dp"
-        tools:layout_editor_absoluteY="31dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/totaltext"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/percentagetiptext"
@@ -39,58 +44,74 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="126dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tipRadioGroup"
+        app:layout_constraintStart_toStartOf="@+id/tipRadioGroup" />
 
     <Button
         android:id="@+id/calcbtn"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="125dp"
         android:layout_height="55dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginTop="35dp"
         android:background="#f31d33"
         android:text="Calculate"
         android:textAppearance="@android:style/TextAppearance.Large.Inverse"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="388dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tipamount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tipRadioGroup" />
 
 
     <TextView
         android:id="@+id/totaltext"
         android:layout_width="wrap_content"
-        android:layout_height="46dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="68dp"
         android:text="Enter Total:"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="33dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/totalamount"
+        app:layout_constraintEnd_toStartOf="@+id/totalamount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/totalamount"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/tipamount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
         android:ems="10"
         android:inputType="none"
         android:selectAllOnFocus="false"
         android:textAlignment="viewStart"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="479dp" />
+        app:layout_constraintBottom_toTopOf="@+id/totalwtip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tiptext" />
 
     <TextView
         android:id="@+id/tiptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="30dp"
         android:text="Tip Amount:"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="479dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tipamount"
+        app:layout_constraintEnd_toStartOf="@+id/tipamount"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/Tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="131dp"
+        android:layout_marginTop="76dp"
         android:background="@null"
         android:ems="10"
         android:inputType="none"
@@ -100,16 +121,22 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="10sp"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="679dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
 
     <RadioGroup
         android:id="@+id/tipRadioGroup"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="196dp"
+        android:layout_marginBottom="126dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="126dp"
         android:checkedButton="@+id/tip_ten"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="158dp">
+        app:layout_constraintBottom_toTopOf="@+id/tiptext"
+        app:layout_constraintEnd_toStartOf="@+id/professiontiptext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/totalamount">
 
         <RadioButton
             android:id="@+id/tip_ten"
@@ -144,30 +171,35 @@
         android:id="@+id/spinner"
         android:layout_width="176dp"
         android:layout_height="56dp"
-        tools:layout_editor_absoluteX="219dp"
-        tools:layout_editor_absoluteY="203dp" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tipRadioGroup" />
 
     <TextView
         android:id="@+id/totalwtiptext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:layout_marginEnd="6dp"
         android:text="Total + Tip:"
         android:textColor="@android:color/black"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="56dp"
-        tools:layout_editor_absoluteY="545dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/totalwtip" />
 
     <EditText
         android:id="@+id/totalwtip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:inputType="none"
         android:selectAllOnFocus="false"
         android:textAlignment="viewStart"
         android:textSize="18sp"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="182dp"
-        tools:layout_editor_absoluteY="542dp" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/totalwtiptext"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

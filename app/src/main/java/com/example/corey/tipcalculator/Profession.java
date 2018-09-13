@@ -1,17 +1,15 @@
 package com.example.corey.tipcalculator;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,72 +29,12 @@ import java.math.RoundingMode;
 import static com.example.corey.tipcalculator.Tip_Calculator.calculatetip;
 
 public class Profession extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnItemSelectedListener {
-    //variables
     private double tip = 0;
     private double totalwtipamount = 0;
     private String outputter = "";
     private double custtipperc = 0;
-    private double bestservice;
-    private double goodservice;
-    private double betterservice;
 
-
-    public void setTip (double temptip) {
-        this.tip = temptip;
-    }
-    public void setTotalwtipamount (double temptotalwtip) {
-        this.totalwtipamount = temptotalwtip;
-    }
-    public void setCusttipperc (double tempCusttipperc) {
-        this.custtipperc = tempCusttipperc;
-    }
-
-    //Getters
-    public double getTip (){
-        return tip;
-    }
-    public double getTotalwtipamount (){
-        return tip;
-    }
-    public double getCusttipperc (){
-        return custtipperc;
-    }
-
-    public Profession(double good, double better, double best){
-        this.bestservice = best;
-        this.goodservice = good;
-        this.betterservice = better;
-    }
-    public Profession(){
-        this.bestservice = 0;
-        this.betterservice = 0;
-        this.goodservice = 0;
-    }
-
-    public void setBetterservice(double betterservice) {
-        this.betterservice = betterservice;
-    }
-
-    public void setGoodservice(double goodservice) {
-        this.goodservice = goodservice;
-    }
-
-    public void setBestservice(double bestservice) {
-        this.bestservice = bestservice;
-    }
-
-    public double getbetterservice() {
-        return betterservice;
-    }
-
-    public double getGoodservice() {
-        return goodservice;
-    }
-
-    public double getBestservice() {
-        return bestservice;
-    }
-    public String getOutputter (){
+    public String getOutputter() {
         return outputter;
     }
 
@@ -104,10 +42,80 @@ public class Profession extends AppCompatActivity implements NavigationView.OnNa
         this.outputter = outputter;
     }
 
-    Profession HairDresser = new Profession(.15,.20,.30);
-    Profession PizzaDelivery= new Profession(.10,.15,.20);
-    Profession Waiter= new Profession(.15,.20,.23);
-    Profession Valet= new Profession(4,7,12);
+    public void setTip(double temptip) {
+        this.tip = temptip;
+    }
+
+    public void setTotalwtipamount(double temptotalwtip) {
+        this.totalwtipamount = temptotalwtip;
+    }
+
+    public void setCusttipperc(double tempCusttipperc) {
+        this.custtipperc = tempCusttipperc;
+    }
+
+    public class professional {
+
+        private double bestservice;
+        private double goodservice;
+        private double betterservice;
+
+        //Getters
+        public double getTip() {
+            return tip;
+        }
+
+        public double getTotalwtipamount() {
+            return tip;
+        }
+
+        public double getCusttipperc() {
+            return custtipperc;
+        }
+
+        public professional(double good, double better, double best) {
+            this.bestservice = best;
+            this.goodservice = good;
+            this.betterservice = better;
+        }
+
+        public professional() {
+            this.bestservice = 0;
+            this.betterservice = 0;
+            this.goodservice = 0;
+        }
+
+        public void setBetterservice(double betterservice) {
+            this.betterservice = betterservice;
+        }
+
+        public void setGoodservice(double goodservice) {
+            this.goodservice = goodservice;
+        }
+
+        public void setBestservice(double bestservice) {
+            this.bestservice = bestservice;
+        }
+
+        public double getbetterservice() {
+            return betterservice;
+        }
+
+        public double getGoodservice() {
+            return goodservice;
+        }
+
+        public double getBestservice() {
+            return bestservice;
+        }
+
+
+    }
+    professional HairDresser = new professional(.15,.20,.30);
+    professional PizzaDelivery= new professional(.10,.15,.20);
+    professional Waiter= new professional(.15,.20,.23);
+    professional Valet= new professional(4,7,12);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,15 +133,9 @@ public class Profession extends AppCompatActivity implements NavigationView.OnNa
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.professions_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+
+
+
 
         //Instantiations
         final Button calcbtn = (Button) findViewById(R.id.calcbtn);
@@ -146,10 +148,19 @@ public class Profession extends AppCompatActivity implements NavigationView.OnNa
         final TextView totalwtip = (TextView) findViewById(R.id.totalwtip);
         final TextView tipamount = (TextView) findViewById(R.id.tipamount);
         final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.tipRadioGroup);
-
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         tipamount.setEnabled(false);
         tag.setEnabled(false);
         totalwtip.setEnabled(false);
+
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.professions_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
         //anonymous inner class
         calcbtn.setOnClickListener(new View.OnClickListener() {
@@ -264,14 +275,14 @@ public class Profession extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
-    public void setallradiobuttontext(Profession pro){
+    public void setallradiobuttontext(professional pro){
         RadioButton tipgood = (RadioButton)findViewById(R.id.tip_ten);
         RadioButton tipbetter = (RadioButton)findViewById(R.id.tip_fifteen);
         RadioButton tipbest = (RadioButton)findViewById(R.id.tip_twenty);
 
-        tipgood.setText(String.valueOf(pro.getGoodservice());
-        tipbetter.setText(String.valueOf(pro.getbetterservice());
-        tipbest.setText(String.valueOf(pro.getBestservice());
+        tipgood.setText(String.valueOf(pro.getGoodservice()));
+        tipbetter.setText(String.valueOf(pro.getbetterservice()));
+        tipbest.setText(String.valueOf(pro.getBestservice()));
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {

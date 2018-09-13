@@ -82,7 +82,7 @@ public class Tip_Calculator extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        navigationView.getMenu().getItem(0).setChecked(true);
 
         //Instantiations
         final Button calcbtn = (Button) findViewById(R.id.calcbtn);
