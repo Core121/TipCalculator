@@ -1,16 +1,7 @@
 package com.example.corey.tipcalculator;
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,7 +19,18 @@ import java.math.RoundingMode;
 
 import static com.example.corey.tipcalculator.Tip_Calculator.calculatetip;
 
-public class Profession extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnItemSelectedListener {
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+
+/**
+ * Created by Belal on 18/09/16.
+ */
+
+
+public class Profession extends Fragment implements OnItemSelectedListener {
+
     private double tip = 0;
     private double totalwtipamount = 0;
     private String outputter = "";
@@ -111,50 +113,49 @@ public class Profession extends AppCompatActivity implements NavigationView.OnNa
 
 
     }
-    professional HairDresser = new professional(.15,.20,.30);
-    professional PizzaDelivery= new professional(.10,.15,.20);
-    professional Waiter= new professional(.15,.20,.23);
-    professional Valet= new professional(4,7,12);
+
+    professional HairDresser = new professional(.15, .20, .30);
+    professional PizzaDelivery = new professional(.10, .15, .20);
+    professional Waiter = new professional(.15, .20, .23);
+    professional Valet = new professional(.15, .20, .25);
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //returning our layout file
+        //change R.layout.yourlayoutfilename for each of your fragments
+
+        return inflater.inflate(R.layout.app_content_profession, container, false);
+    }
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profession);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //you can set the title for your toolbar here for different fragments different titles
+        getActivity().setTitle("Tip Profession");
 
 
 
         //Instantiations
-        final Button calcbtn = (Button) findViewById(R.id.calcbtn);
-        final EditText totalamount = (EditText) findViewById(R.id.totalamount);
-        final RadioButton tipten = (RadioButton) findViewById(R.id.tip_ten);
-        final RadioButton tipfifteen = (RadioButton) findViewById(R.id.tip_fifteen);
-        final RadioButton tiptwenty = (RadioButton) findViewById(R.id.tip_twenty);
-        final RadioButton customtip = (RadioButton) findViewById(R.id.customtip);
-        final TextView tag = (TextView) findViewById(R.id.Tag);
-        final TextView totalwtip = (TextView) findViewById(R.id.totalwtip);
-        final TextView tipamount = (TextView) findViewById(R.id.tipamount);
-        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.tipRadioGroup);
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        final Button calcbtn = (Button) getView().findViewById(R.id.calcbtn);
+        final EditText totalamount = (EditText) getView().findViewById(R.id.totalamount);
+        final RadioButton tipten = (RadioButton) getView().findViewById(R.id.tip_ten);
+        final RadioButton tipfifteen = (RadioButton) getView().findViewById(R.id.tip_fifteen);
+        final RadioButton tiptwenty = (RadioButton) getView().findViewById(R.id.tip_twenty);
+        final RadioButton customtip = (RadioButton) getView().findViewById(R.id.customtip);
+        final TextView tag = (TextView) getView().findViewById(R.id.Tag);
+        final TextView totalwtip = (TextView) getView().findViewById(R.id.totalwtip);
+        final TextView tipamount = (TextView) getView().findViewById(R.id.tipamount);
+        final RadioGroup radioGroup = (RadioGroup) getView().findViewById(R.id.tipRadioGroup);
+        final Spinner spinner = (Spinner) getView().findViewById(R.id.spinnerbro);
         tipamount.setEnabled(false);
         tag.setEnabled(false);
         totalwtip.setEnabled(false);
 
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.professions_array, android.R.layout.simple_spinner_item);
 // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -168,34 +169,34 @@ public class Profession extends AppCompatActivity implements NavigationView.OnNa
             public void onClick(View v) {
                 setTip(0);
                 if (totalamount.getText().toString().equals("")) {
-                    Toast.makeText(Profession.this, "No total amount entered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "No total amount entered", Toast.LENGTH_SHORT).show();
                 } else {
                     double total = Double.parseDouble(totalamount.getText().toString());
                     double tiptemp = 0;
-                    if (tipten.isChecked() && spinner.getSelectedItemPosition() == 0) {
-                        tiptemp = calculatetip(HairDresser.goodservice, total);
-                    } else if (tipfifteen.isChecked() && spinner.getSelectedItemPosition() == 0) {
-                        tiptemp = calculatetip(HairDresser.betterservice, total);
-                    } else if (tiptwenty.isChecked() && spinner.getSelectedItemPosition() == 0) {
-                        tiptemp = calculatetip(HairDresser.bestservice, total);
-                    } else if (tipten.isChecked() && spinner.getSelectedItemPosition() == 1) {
-                        tiptemp = calculatetip(PizzaDelivery.goodservice, total);
+                    if (tipten.isChecked() && spinner.getSelectedItemPosition() == 1) {
+                        tiptemp = calculatetip(HairDresser.getGoodservice(), total);
                     } else if (tipfifteen.isChecked() && spinner.getSelectedItemPosition() == 1) {
-                        tiptemp = calculatetip(PizzaDelivery.betterservice, total);
+                        tiptemp = calculatetip(HairDresser.getbetterservice(), total);
                     } else if (tiptwenty.isChecked() && spinner.getSelectedItemPosition() == 1) {
-                        tiptemp = calculatetip(PizzaDelivery.bestservice, total);
+                        tiptemp = calculatetip(HairDresser.getBestservice(), total);
                     } else if (tipten.isChecked() && spinner.getSelectedItemPosition() == 2) {
-                        tiptemp = calculatetip(Waiter.goodservice, total);
+                        tiptemp = calculatetip(PizzaDelivery.getGoodservice(), total);
                     } else if (tipfifteen.isChecked() && spinner.getSelectedItemPosition() == 2) {
-                        tiptemp = calculatetip(Waiter.betterservice, total);
+                        tiptemp = calculatetip(PizzaDelivery.getbetterservice(), total);
                     } else if (tiptwenty.isChecked() && spinner.getSelectedItemPosition() == 2) {
-                        tiptemp = calculatetip(Waiter.bestservice, total);
+                        tiptemp = calculatetip(PizzaDelivery.getBestservice(), total);
                     } else if (tipten.isChecked() && spinner.getSelectedItemPosition() == 3) {
-                        tiptemp = calculatetip(.20, total);
+                        tiptemp = calculatetip(Waiter.getGoodservice(), total);
                     } else if (tipfifteen.isChecked() && spinner.getSelectedItemPosition() == 3) {
-                        tiptemp = calculatetip(.15, total);
+                        tiptemp = calculatetip(Waiter.getbetterservice(), total);
                     } else if (tiptwenty.isChecked() && spinner.getSelectedItemPosition() == 3) {
-                        tiptemp = calculatetip(.20, total);
+                        tiptemp = calculatetip(Waiter.getBestservice(), total);
+                    } else if (tipten.isChecked() && spinner.getSelectedItemPosition() == 0) {
+                        tiptemp = calculatetip(0, 0);
+                    } else if (tipfifteen.isChecked() && spinner.getSelectedItemPosition() == 0) {
+                        tiptemp = calculatetip(0, 0);
+                    } else if (tiptwenty.isChecked() && spinner.getSelectedItemPosition() == 0) {
+                        tiptemp = calculatetip(0, 0);
                     } else if (tipten.isChecked() && spinner.getSelectedItemPosition() == 4) {
                         tiptemp = total + Valet.goodservice;
                     } else if (tipfifteen.isChecked() && spinner.getSelectedItemPosition() == 4) {
@@ -203,7 +204,7 @@ public class Profession extends AppCompatActivity implements NavigationView.OnNa
                     } else if (tiptwenty.isChecked() && spinner.getSelectedItemPosition() == 4) {
                         tiptemp = total + Valet.bestservice;
                     } else {
-                        Toast.makeText(Profession.this, "No profession selected", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "No profession selected", Toast.LENGTH_SHORT).show();
                     }
                     setTip(tiptemp);
                     Double tipprecision = BigDecimal.valueOf(tip).setScale(2, RoundingMode.HALF_UP).doubleValue();
@@ -216,49 +217,24 @@ public class Profession extends AppCompatActivity implements NavigationView.OnNa
                 }
             }
         });
-
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-        finish();
-    }
-
-
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_tipcalc) {
-            Intent intent = new Intent(this, Tip_Calculator.class);
-            startActivity(intent);
-        }
-        else if (id == R.id.nav_profession) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
+@Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id){
-
+    RadioButton tipgood = (RadioButton)getView().findViewById(R.id.tip_ten);
+    RadioButton tipbetter = (RadioButton)getView().findViewById(R.id.tip_fifteen);
+    RadioButton tipbest = (RadioButton)getView().findViewById(R.id.tip_twenty);
         switch (position) {
             case 0:
+                tipgood.setText("Good");
+                tipbetter.setText("Better");
+                tipbest.setText("Best");
+                break;
+            case 1:
                 //Hair Dresser
                 setallradiobuttontext(HairDresser);
                 break;
-            case 1:
+            case 2:
                 //Pizza Delivery
                 setallradiobuttontext(PizzaDelivery);
                 break;
@@ -276,9 +252,9 @@ public class Profession extends AppCompatActivity implements NavigationView.OnNa
     }
 
     public void setallradiobuttontext(professional pro){
-        RadioButton tipgood = (RadioButton)findViewById(R.id.tip_ten);
-        RadioButton tipbetter = (RadioButton)findViewById(R.id.tip_fifteen);
-        RadioButton tipbest = (RadioButton)findViewById(R.id.tip_twenty);
+        RadioButton tipgood = (RadioButton)getView().findViewById(R.id.tip_ten);
+        RadioButton tipbetter = (RadioButton)getView().findViewById(R.id.tip_fifteen);
+        RadioButton tipbest = (RadioButton)getView().findViewById(R.id.tip_twenty);
 
         tipgood.setText(String.valueOf(pro.getGoodservice()));
         tipbetter.setText(String.valueOf(pro.getbetterservice()));

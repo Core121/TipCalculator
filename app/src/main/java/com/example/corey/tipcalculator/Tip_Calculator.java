@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -32,45 +36,16 @@ import java.math.RoundingMode;
 
 public class Tip_Calculator extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    //declaration of variables
-    private double tip = 0;
-    private double totalwtipamount = 0;
-    private String outputter = "";
-    private double custtipperc = 0;
-
-    //Setters
-    public void setTip (double temptip) {
-        this.tip = temptip;
-    }
-    public void setTotalwtipamount (double temptotalwtip) {
-        this.totalwtipamount = temptotalwtip;
-    }
-    public void setCusttipperc (double tempCusttipperc) {
-        this.custtipperc = tempCusttipperc;
-    }
-    public void setOutputter (String tempoutput) {
-        this.outputter = tempoutput;
-    }
-
-    //Getters
-    public double getTip (){
-        return tip;
-    }
-    public double getTotalwtipamount (){
-        return tip;
-    }
-    public double getCusttipperc (){
-        return custtipperc;
-    }
-    public String getOutputter (){
-        return outputter;
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Fragment fragment = new tipcalcfrag();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.passer, fragment);
+        ft.commit();
+        findViewById(R.id.passer).setVisibility(View.VISIBLE);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -83,91 +58,7 @@ public class Tip_Calculator extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
-
-        //Instantiations
-        final Button calcbtn = (Button) findViewById(R.id.calcbtn);
-        final EditText totalamount = (EditText) findViewById(R.id.totalamount);
-        final RadioButton tipten = (RadioButton) findViewById(R.id.tip_ten);
-        final RadioButton tipfifteen = (RadioButton) findViewById(R.id.tip_fifteen);
-        final RadioButton tiptwenty = (RadioButton) findViewById(R.id.tip_twenty);
-        final RadioButton customtip = (RadioButton) findViewById(R.id.customtip);
-        final TextView tag = (TextView) findViewById(R.id.Tag);
-        final TextView totalwtip = (TextView) findViewById(R.id.totalwtip);
-        final TextView tipamount = (TextView) findViewById(R.id.tipamount);
-        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.tipRadioGroup);
-
-        tipamount.setEnabled(false);
-        tag.setEnabled(false);
-        totalwtip.setEnabled(false);
-
-        //anonymous inner class
-        calcbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setTip(0);
-                if (totalamount.getText().toString().equals("")) {
-                    Toast.makeText(Tip_Calculator.this, "No total amount entered", Toast.LENGTH_SHORT).show();
-                } else {
-                    double total = Double.parseDouble(totalamount.getText().toString());
-                    double tiptemp = 0;
-                    if (tipten.isChecked()) {
-                        tiptemp = calculatetip(.10, total);
-                    } else if (tipfifteen.isChecked()) {
-                        tiptemp = calculatetip(.15, total);
-                    } else if (tiptwenty.isChecked()) {
-                        tiptemp = calculatetip(.20, total);
-                    } else if (customtip.isChecked()) {
-                        tiptemp = calculatetip(custtipperc, total);
-                        tipten.toggle();
-                    }
-                    setTip(tiptemp);
-                    Double tipprecision = BigDecimal.valueOf(tip).setScale(2, RoundingMode.HALF_UP).doubleValue();
-                    setTotalwtipamount(tip + total);
-                    Double totalprecision = BigDecimal.valueOf(totalwtipamount).setScale(2, RoundingMode.HALF_UP).doubleValue();
-                    setOutputter(String.valueOf((tipprecision)));
-                    tipamount.setText(getOutputter());
-                    setOutputter(String.valueOf(totalprecision));
-                    totalwtip.setText(getOutputter());
-                }
-            }
-        });
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.customtip) {
-                    AlertDialog.Builder Customtipprompt = new AlertDialog.Builder(Tip_Calculator.this);
-                    Customtipprompt.setTitle("Custom Tip (Only Accepts Integers)");
-                    Customtipprompt.setCancelable(false);
-                    final EditText custtipval = new EditText(Tip_Calculator.this);
-                    custtipval.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    Customtipprompt.setView(custtipval);
-                    Customtipprompt.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            if (custtipval.getText().toString().equals("")) {
-                                Toast.makeText(Tip_Calculator.this, "Empty Custom Percent", Toast.LENGTH_SHORT).show();
-                                tipten.toggle();
-                            } else {
-                                custtipperc = Double.parseDouble(custtipval.getText().toString());
-                                custtipperc /= 100;
-                            }
-                        }
-                    });
-                    Customtipprompt.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                            tipten.toggle();
-                        }
-                    });
-                    Customtipprompt.show();
-                }
-            }
-        });
     }
-
 
     //Function that calculates tip
     static public double calculatetip(double tip, double total) {
@@ -189,24 +80,38 @@ public class Tip_Calculator extends AppCompatActivity
     }
 
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_tipcalc) {
-
-        }
-        else if (id == R.id.nav_profession) {
-            Intent intent = new Intent(this, Profession.class);
-            startActivity(intent);
-        }
-
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
-            return true;
-        }
+    displayView(item.getItemId());
+        return true;
     }
+
+    private void displayView(int itemId) {
+
+        //creating fragment object
+        Fragment fragment1 = new tipcalcfrag();
+        Fragment fragment2 = new Profession();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        //initializing the fragment object which is selected
+        switch (itemId) {
+            case R.id.nav_tipcalc:
+                ft.replace(R.id.passer, fragment1);
+                findViewById(R.id.passer).setVisibility(View.VISIBLE);
+                findViewById(R.id.app_content_profession).setVisibility(View.INVISIBLE);
+                break;
+            case R.id.nav_profession:
+                ft.replace(R.id.app_content_profession, fragment2);
+                findViewById(R.id.app_content_profession).setVisibility(View.VISIBLE);
+                findViewById(R.id.passer).setVisibility(View.INVISIBLE);
+                break;
+        }
+
+        //replacing the fragment
+        ft.commit();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+}
 
