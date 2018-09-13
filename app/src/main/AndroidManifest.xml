@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.corey.tipcalculator">
+    package="com.coreapplications.corey.tipcalculater">
 
     <application
         android:allowBackup="true"
@@ -10,15 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity android:name=".Tip_Calculator" android:label="Tip Calculator">
+        <activity android:name=".Tip_Calculator" android:label="Tip Calculator" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    <!--Add Other activities like this-->
-    <activity android:name=".Profession" android:label="Tip Profession" >
-    </activity>
     </application>
 
 </manifest>
