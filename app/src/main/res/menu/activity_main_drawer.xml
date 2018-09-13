@@ -11,13 +11,9 @@
     </group>
     <group android:checkableBehavior="single" >
         <item
-            android:id="@+id/nav_hairdresser"
-            android:icon="@drawable/ic_attach_money_black_24dp"
-            android:title="Tip Hairdresser" />
-        <item
-            android:id="@+id/nav_pizza"
-            android:icon="@drawable/ic_attach_money_black_24dp"
-            android:title="Tip Pizza Delivery" />
+            android:id="@+id/nav_profession"
+            android:icon="@drawable/ic_face_black_24dp"
+            android:title="Tip by Profession" />
     </group>
 
 

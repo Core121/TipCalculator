@@ -53,23 +53,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tipRadioGroup" />
 
-
-        public class MyActivity extends Activity {
-        protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.content_layout_id);
-
-        final Button button = findViewById(R.id.button_id);
-        button.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-        // Code here executes on main thread after user presses button
-        }
-        });
-        }
-        }
-
-
         <TextView
             android:id="@+id/totaltext"
             android:layout_width="wrap_content"

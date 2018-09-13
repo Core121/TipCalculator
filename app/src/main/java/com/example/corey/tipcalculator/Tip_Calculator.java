@@ -185,6 +185,7 @@ public class Tip_Calculator extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        finish();
     }
 
 
@@ -196,10 +197,11 @@ public class Tip_Calculator extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_tipcalc) {
-        startActivity(new Intent(this, Tip_Calculator.class));
+
         }
-        else if (id == R.id.nav_professioncalc) {
-        startActivity(new Intent(this, Profession.class));
+        else if (id == R.id.nav_profession) {
+            Intent intent = new Intent(this, Profession.class);
+            startActivity(intent);
         }
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
