@@ -16,17 +16,16 @@
     <EditText
         android:id="@+id/totalamount"
         android:layout_width="118dp"
-        android:layout_height="48dp"
+        android:layout_height="44dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:textAlignment="viewStart"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/percentagetiptext"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/totaltext"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.493" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/percentagetiptext"
@@ -61,14 +60,14 @@
         android:id="@+id/totaltext"
         android:layout_width="127dp"
         android:layout_height="46dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="52dp"
         android:text="Enter Total:"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/percentagetiptext"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.485" />
+        app:layout_constraintVertical_bias="0.611" />
 
     <EditText
         android:id="@+id/tipamount"
@@ -149,7 +148,7 @@
     <RadioGroup
         android:id="@+id/tipRadioGroup"
         android:layout_width="194dp"
-        android:layout_height="178dp"
+        android:layout_height="211dp"
         android:checkedButton="@+id/tip_ten"
         app:layout_constraintBottom_toTopOf="@+id/calcbtn"
         app:layout_constraintEnd_toEndOf="parent"

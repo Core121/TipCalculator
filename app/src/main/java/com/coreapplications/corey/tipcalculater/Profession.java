@@ -168,6 +168,9 @@ public class Profession extends Fragment implements OnItemSelectedListener {
             @Override
             public void onClick(View v) {
                 setTip(0);
+                tipamount.setText("");
+                totalwtip.setText("");
+                boolean isSelected = false;
                 if (totalamount.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "No total amount entered", Toast.LENGTH_SHORT).show();
                 } else {
@@ -175,6 +178,7 @@ public class Profession extends Fragment implements OnItemSelectedListener {
                     double tiptemp = 0;
                     if (spinner.getSelectedItemPosition() == 0) {
                         Toast.makeText(getActivity(), "Please select a profession", Toast.LENGTH_SHORT).show();
+                        isSelected = true;
                     }else if (tipten.isChecked() && spinner.getSelectedItemPosition() == 1) {
                         tiptemp = calculatetip(HairDresser.getGoodservice(), total);
                     } else if (tipfifteen.isChecked() && spinner.getSelectedItemPosition() == 1) {
@@ -199,17 +203,18 @@ public class Profession extends Fragment implements OnItemSelectedListener {
                         tiptemp = total + Valet.betterservice;
                     } else if (tiptwenty.isChecked() && spinner.getSelectedItemPosition() == 4) {
                         tiptemp = total + Valet.bestservice;
-                    } else {
-                        Toast.makeText(getActivity(), "No profession selected", Toast.LENGTH_SHORT).show();
                     }
-                    setTip(tiptemp);
-                    Double tipprecision = BigDecimal.valueOf(tip).setScale(2, RoundingMode.HALF_UP).doubleValue();
-                    setTotalwtipamount(tip + total);
-                    Double totalprecision = BigDecimal.valueOf(totalwtipamount).setScale(2, RoundingMode.HALF_UP).doubleValue();
-                    setOutputter(String.valueOf((tipprecision)));
-                    tipamount.setText(getOutputter());
-                    setOutputter(String.valueOf(totalprecision));
-                    totalwtip.setText(getOutputter());
+
+                    if(!isSelected) {
+                        setTip(tiptemp);
+                        Double tipprecision = BigDecimal.valueOf(tip).setScale(2, RoundingMode.HALF_UP).doubleValue();
+                        setTotalwtipamount(tip + total);
+                        Double totalprecision = BigDecimal.valueOf(totalwtipamount).setScale(2, RoundingMode.HALF_UP).doubleValue();
+                        setOutputter(String.valueOf((tipprecision)));
+                        tipamount.setText(getOutputter());
+                        setOutputter(String.valueOf(totalprecision));
+                        totalwtip.setText(getOutputter());
+                    }
                 }
             }
         });

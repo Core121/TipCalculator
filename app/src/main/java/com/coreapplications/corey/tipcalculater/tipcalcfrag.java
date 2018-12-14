@@ -111,6 +111,8 @@ public class tipcalcfrag extends Fragment {
             @Override
             public void onClick(View v) {
                 setTip(0);
+                tipamount.setText("");
+                totalwtip.setText("");
                 if (totalamount.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "No total amount entered", Toast.LENGTH_SHORT).show();
                 } else {
