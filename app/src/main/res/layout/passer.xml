@@ -23,8 +23,8 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/percentagetiptext"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.556"
-        app:layout_constraintStart_toStartOf="@+id/percentagetiptext"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/totaltext"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.493" />
 
