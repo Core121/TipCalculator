@@ -1,4 +1,4 @@
-package com.example.corey.tipcalculator;
+package com.coreapplications.corey.tipcalculater;
 
 
 import android.app.AlertDialog;
@@ -20,12 +20,13 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static com.example.corey.tipcalculator.Tip_Calculator.calculatetip;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import static com.coreapplications.corey.tipcalculater.Tip_Calculator.calculatetip;
 
 /**
  * Created by Belal on 18/09/16.

@@ -1,4 +1,4 @@
-package com.example.corey.tipcalculator;
+package com.coreapplications.corey.tipcalculater;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,7 +28,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.corey.tipcalculator.R;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -41,7 +40,7 @@ public class Tip_Calculator extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Fragment fragment = new tipcalcfrag();
+        Fragment fragment = new com.coreapplications.corey.tipcalculater.tipcalcfrag();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.passer, fragment);
         ft.commit();
