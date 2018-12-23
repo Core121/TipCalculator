@@ -198,11 +198,11 @@ public class Profession extends Fragment implements OnItemSelectedListener {
                     } else if (tiptwenty.isChecked() && spinner.getSelectedItemPosition() == 3) {
                         tiptemp = calculatetip(Waiter.getBestservice(), total);
                     } else if (tipten.isChecked() && spinner.getSelectedItemPosition() == 4) {
-                        tiptemp = total + Valet.goodservice;
+                        tiptemp = calculatetip(Valet.getGoodservice(), total);
                     } else if (tipfifteen.isChecked() && spinner.getSelectedItemPosition() == 4) {
-                        tiptemp = total + Valet.betterservice;
+                        tiptemp = calculatetip(Valet.getbetterservice(), total);
                     } else if (tiptwenty.isChecked() && spinner.getSelectedItemPosition() == 4) {
-                        tiptemp = total + Valet.bestservice;
+                        tiptemp = calculatetip(Valet.getBestservice(), total);
                     }
 
                     if(!isSelected) {
@@ -227,9 +227,9 @@ public class Profession extends Fragment implements OnItemSelectedListener {
     RadioButton tipbest = (RadioButton)getView().findViewById(R.id.tip_twenty);
         switch (position) {
             case 0:
-                tipgood.setText("Good");
-                tipbetter.setText("Better");
-                tipbest.setText("Best");
+                tipgood.setText("Good Tip");
+                tipbetter.setText("Better Tip");
+                tipbest.setText("Best Tip");
                 break;
             case 1:
                 //Hair Dresser
